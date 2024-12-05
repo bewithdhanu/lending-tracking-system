@@ -8,8 +8,6 @@ interface PaymentActivityProps {
   activity: TransactionActivity;
   transaction: Transaction;
   isEditing: boolean;
-  onStartEdit: () => void;
-  onCancelEdit: () => void;
   onSaveEdit: (content: string, date: Date) => void;
   showEditButton: boolean;
 }
@@ -18,8 +16,6 @@ export function PaymentActivity({
   activity,
   transaction,
   isEditing,
-  onStartEdit,
-  onCancelEdit,
   onSaveEdit,
   showEditButton,
 }: PaymentActivityProps) {
@@ -47,29 +43,12 @@ export function PaymentActivity({
         </div>
         {showEditButton && (
           <div className="flex space-x-2">
-            {isEditing ? (
-              <>
-                <button
-                  onClick={() => onSaveEdit(editContent, new Date(editDate))}
-                  className="text-green-600 hover:text-green-900"
-                >
-                  <Save className="h-5 w-5" />
-                </button>
-                <button
-                  onClick={onCancelEdit}
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </>
-            ) : (
-              <button
-                onClick={onStartEdit}
+            <button
+              onClick={() => onSaveEdit(editContent, new Date(editDate))}
                 className="text-blue-600 hover:text-blue-900"
               >
                 <Edit className="h-5 w-5" />
               </button>
-            )}
           </div>
         )}
       </div>
